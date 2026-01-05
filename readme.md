@@ -1,4 +1,4 @@
-# 🖐️ Virtual Mouse Using Computer Vision (MediaPipe + Python)
+# 🖐️ Virtual Mouse Using Computer Vision
 
 Control your computer **entirely with hand gestures** using your webcam.
 This project turns your hand into a **virtual mouse**, supporting cursor movement, clicks, drag, scroll, zoom, right-click, and even window closing — all powered by **MediaPipe Hand Landmarker** and **PyAutoGUI**.
@@ -89,3 +89,36 @@ Install required libraries:
 
 ```bash
 pip install opencv-python numpy pyautogui mediapipe
+```
+
+---
+
+## 📥 Download the Model File
+
+### This project requires the MediaPipe Hand Landmarker model.
+- File name: hand_landmarker.task
+- Download the model from the official MediaPipe repository
+- Place the file in the root directory of the project
+
+---
+
+## 🚀 How to Run
+### 1. Clone the Repository
+```
+git clone https://github.com/your-username/virtual-mouse.git
+cd virtual-mouse
+```
+
+### 2. Verify Project Structure
+virtual-mouse/
+- │── app.py
+- │── hand_landmarker.task
+- │── README.md
+
+### 3. Run the Application
+python app.py
+
+### 4. Exit
+Press Q or ESC to close the application
+
+---
