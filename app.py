@@ -1,3 +1,4 @@
+#Imports
 import time
 import cv2
 import numpy as np
@@ -6,8 +7,10 @@ import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
+#Importing Hand-Detection Files
 MODEL_PATH = "hand_landmarker.task"
 
+#Defining Variables and thresholds
 SMOOTHING_ALPHA = 0.25
 PINCH_THRESH = 0.035
 SCROLL_PAIR_THRESH = 0.04
@@ -22,6 +25,7 @@ SHOW_HUD = True
 pyautogui.FAILSAFE = False
 screen_w, screen_h = pyautogui.size()
 
+#Function to calculate distance
 def norm_dist(a, b):
     return np.linalg.norm([a.x - b.x, a.y - b.y])
 
@@ -37,12 +41,14 @@ class EMA:
         )
         return self.value
 
+#Function to scale screen size and store in pyplotgui to control mouse accordingly 
 def map_to_screen(nx, ny):
     m = ACTIVE_MARGIN
     nx = np.clip((nx - m) / (1 - 2 * m), 0, 1)
     ny = np.clip((ny - m) / (1 - 2 * m), 0, 1)
     return int(nx * screen_w), int(ny * screen_h)
 
+#Function to capture video in a desired resolution
 def main():
     cap = cv2.VideoCapture(CAM_INDEX)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
@@ -86,11 +92,13 @@ def main():
         if result.hand_landmarks:
             lm = result.hand_landmarks[0]
 
+            #Defining each finger tips
             thumb = lm[4]
             index = lm[8]
             middle = lm[12]
             pinky = lm[20]
 
+            #Distance between required finger tips
             d_ti = norm_dist(thumb, index)
             d_tm = norm_dist(thumb, middle)
             d_mp = norm_dist(middle, pinky)
@@ -149,3 +157,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
